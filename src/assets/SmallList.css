@@ -1,0 +1,68 @@
+.small-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  border: 2px white solid;
+  border-radius: 10px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  margin-left: 10px;
+  margin-top: 7px;
+  padding: 5px 10px;
+  font-size: 18px;
+  background-color: #282c34;
+  color: white;
+  border: 3px solid white;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: #757684; /* Lighter grey on hover */
+}
+
+.draggable-task {
+  cursor: move; /* Indicates that the item can be moved */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+}
+
+.draggable-task:hover {
+  background-color: #56545a; /* Light highlight when hovered */
+}
+
+.draggable-task:active {
+  opacity: 1; /* Reduced opacity during drag */
+}
+
+.delete-icon {
+  color: white;
+  margin-left: 10px;
+  padding: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+.delete-icon.grow {
+  color: red;
+  transform: scale(2); /* Enlarge the icon by 150% */
+}
+
+.input {
+  width: calc(
+    100% - 20px
+  ); /* Assuming there's padding or border totaling 20px */
+  padding: 8px; /* Match the task padding */
+  margin: 10px auto; /* Centering the input and providing some margin */
+  border: 2px solid #ccc; /* Stylish border similar to tasks */
+  border-radius: 4px; /* Rounded corners like tasks */
+  box-sizing: border-box; /* Includes padding and border in the width */
+}

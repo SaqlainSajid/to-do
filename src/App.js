@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SmallList from "./components/SmallList";
 
 function App() {
+  let taskList = [
+    "hehe",
+    "haha",
+    "whattup",
+    "Yo bro let's get it on abcd efg hijklmnop qrstuv wx yz",
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Tasks</p>
+      <div className="big-list">
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+        <SmallList>{taskList}</SmallList>
+      </div>
     </div>
   );
 }

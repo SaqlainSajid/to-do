@@ -1,0 +1,22 @@
+.task {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: white 2px solid;
+  border-radius: 20px;
+  margin: 10px;
+  font-size: calc(10px + 1vmin);
+  width: 500px;
+  white-space: wrap;
+}
+
+.task-checkbox {
+  flex: none;
+  margin-left: 10px;
+}
+
+.strikethrough {
+  text-decoration: line-through; /* Apply strikethrough */
+}
