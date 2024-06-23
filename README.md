@@ -1,3 +1,24 @@
+# This is basic to do list website
+- You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown horizontally
+- You can add/delete lists
+- You can add/delete tasks to a list
+- You can reorganize the position of each task in a list
+- You can mark a task done
+- Helps me by showing me all the different groups of tasks I need to do together all in one place
+
+# How to start the project 
+Download the code, use GitHub desktop for ease of use
+open the project in VScode
+in the terminal type "cd server"
+then type "npm install"
+then type "npm start"
+when the backend starts on port 3000, go back one level in the terminal to the root of the project
+so type "cd .."
+then type "npm install"
+then type "npm start"
+the website should start on port 3001
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
