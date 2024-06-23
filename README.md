@@ -9,7 +9,7 @@
 # How to start the project 
 Download the code, use GitHub desktop for ease of use
 open the project in VScode
-first make a .env file at the root of the project and add these two variables 
+first make a .env file at the root of the server folder and add these two variables 
   PORT=3000
   MONGO_URI=mongodb+srv://<username>:<password>@basic.c804vti.mongodb.net/?retryWrites=true&w=majority&appName=Basic
 replace username and password with your mongodb username and password (you need to set up a mongoDB account first and get the username and password)
