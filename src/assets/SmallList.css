@@ -46,7 +46,7 @@ button:hover {
 .delete-icon {
   color: white;
   margin-left: 10px;
-  padding: 50px;
+  padding: 10px;
   cursor: pointer;
   transition: transform 0.3s ease; /* Smooth transition for transform */
 }
@@ -54,6 +54,11 @@ button:hover {
 .delete-icon.grow {
   color: red;
   transform: scale(2); /* Enlarge the icon by 150% */
+}
+
+.delete-icon:hover {
+  transform: scale(1.5);
+  color: red;
 }
 
 .input {

@@ -3,15 +3,17 @@ import Group from "./Group";
 import Task from "./Task";
 import "../assets/SmallList.css";
 import { FaTrash } from "react-icons/fa";
+import axios from "axios";
 
 function SmallList(props) {
-  const [tasks, setTasks] = useState(props.children);
+  const [tasks, setTasks] = useState(props.children.tasks);
+  const [listId, setListId] = useState(props.children._id);
   const [isDragging, setIsDragging] = useState(false);
   const [hoveringDelete, setHoveringDelete] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [newTask, setNewTask] = useState("");
   const [isNameEditable, setIsNameEditable] = useState(false);
-  const [groupName, setGroupName] = useState("Name");
+  const [groupName, setGroupName] = useState(props.children.name);
 
   const handleGroupNameChange = (e) => {
     setGroupName(e.target.value);
@@ -72,16 +74,28 @@ function SmallList(props) {
   };
 
   const handleDeleteDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const draggedTaskPosition = parseInt(
       e.dataTransfer.getData("taskPosition")
     );
-    const newTasks = [...tasks];
-    newTasks.splice(draggedTaskPosition, 1); // Remove the task
-    setTasks(newTasks);
-    setIsDragging(false); // Reset dragging state
-    setHoveringDelete(false); // Reset hover state
-    e.preventDefault(); // Prevent default to allow drop handling
-    e.stopPropagation();
+    const taskToDelete = tasks[draggedTaskPosition];
+
+    if (!taskToDelete) return; // If no task is found at the position, do nothing
+
+    axios
+      .delete(`http://localhost:3000/lists/${listId}/tasks/${taskToDelete._id}`)
+      .then(() => {
+        const updatedTasks = [...tasks];
+        updatedTasks.splice(draggedTaskPosition, 1); // Remove the task from local state
+        setTasks(updatedTasks);
+        setIsDragging(false); // Reset dragging state
+        setHoveringDelete(false); // Reset hover state
+        console.log("Task deleted successfully");
+      })
+      .catch((error) => {
+        console.error("Failed to delete task:", error);
+      });
   };
 
   const handleAddClick = () => {
@@ -94,10 +108,34 @@ function SmallList(props) {
 
   const handleInputKeyDown = (e) => {
     if (e.key === "Enter" && newTask.trim() !== "") {
-      setTasks([...tasks, newTask]); // Add the new task to the tasks array
-      setNewTask(""); // Clear the input field
-      setShowInput(false); // Hide the input field
+      axios
+        .patch(`http://localhost:3000/lists/${listId}/tasks`, {
+          text: newTask.trim(),
+        })
+        .then((response) => {
+          console.log(response.data);
+          setTasks([...tasks, response.data]); // Add the new task to the tasks array
+          setNewTask(""); // Clear the input field
+          setShowInput(false); // Hide the input field
+        })
+        .catch((error) => {
+          console.error("Failed to add task:", error);
+          // Optionally handle the error in the UI, e.g., show a message to the user
+        });
     }
+  };
+
+  const handleDeleteList = () => {
+    axios
+      .delete(`http://localhost:3000/lists/${listId}`)
+      .then(() => {
+        // Assuming there's a prop function passed down to handle the removal in the parent component's state
+        props.onListDelete(listId);
+        console.log("List deleted successfully", listId, groupName);
+      })
+      .catch((error) => {
+        console.error("Failed to delete list:", error);
+      });
   };
 
   return (
@@ -120,6 +158,9 @@ function SmallList(props) {
         <button type="button" onClick={handleAddClick}>
           +
         </button>
+        {!isDragging && (
+          <FaTrash className={`delete-icon`} onClick={handleDeleteList} />
+        )}
         {isDragging && (
           <FaTrash
             className={`delete-icon ${hoveringDelete ? "grow" : ""}`}
@@ -140,7 +181,14 @@ function SmallList(props) {
           onDragEnd={handleDragEnd}
           className="draggable-task"
         >
-          <Task>{task}</Task>
+          <Task
+            key={task._id}
+            listId={listId}
+            taskId={task._id}
+            checked={task.completed}
+          >
+            {task.text}
+          </Task>
         </div>
       ))}
       {showInput && (
