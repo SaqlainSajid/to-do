@@ -1,5 +1,5 @@
-# This is basic to do list website
-- You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown horizontally
+# This is a basic to do list website
+- You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown vertically
 - You can add/delete lists
 - You can add/delete tasks to a list
 - You can reorganize the position of each task in a list
