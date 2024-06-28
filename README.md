@@ -1,5 +1,7 @@
 # This is a basic to do list website
-- You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown vertically
+- You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown horizontally from left to right
+- You can set priority to the lists you make lists with priority 1 would be shown at the left end, then priority 2 
+would be shown right next to it to the right and so on
 - You can add/delete lists
 - You can add/delete tasks to a list
 - You can reorganize the position of each task in a list
