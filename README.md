@@ -6,7 +6,7 @@ would be shown right next to it to the right and so on
 - You can add/delete tasks to a list
 - You can reorganize the position of each task in a list
 - You can mark a task done
-- Helps me by showing me all the different groups of tasks I need to do together all in one place
+- Helps me by showing me all the different groups of tasks (school, work, clubs, health, miscellaneous etc.) I need to do together all in one place
 
 # How to start the project 
 Download the code, use GitHub desktop for ease of use
