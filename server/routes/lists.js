@@ -146,4 +146,28 @@ router.delete("/:listId/tasks/:taskId", async (req, res) => {
   }
 });
 
+//setPriority for list
+router.patch("/:listId/priority", async (req, res) => {
+  const { listId } = req.params;
+  const { priority } = req.body; // Extract priority from request body
+
+  try {
+    // Find the list by its ID and update the priority
+    const list = await List.findByIdAndUpdate(
+      listId,
+      { priority: priority },
+      { new: true } // Return the updated document
+    );
+
+    if (!list) {
+      return res.status(404).send("List not found");
+    }
+
+    res.json(list.priority); // Send back the updated priority
+  } catch (error) {
+    console.error("Error updating priority:", error);
+    res.status(500).send("Error updating priority");
+  }
+});
+
 module.exports = router;

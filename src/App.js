@@ -39,6 +39,14 @@ function App() {
     setList(list.filter((item) => item._id !== listId));
   };
 
+  const updateListPriority = (listId, newPriority) => {
+    setList((prevList) => {
+      return prevList.map((item) =>
+        item._id === listId ? { ...item, priority: newPriority } : item
+      );
+    });
+  };
+
   return (
     <div className="App">
       <header>
@@ -59,11 +67,17 @@ function App() {
       )}
       <div className="big-list">
         {list
-          ? list.map((list) => (
-              <SmallList key={list._id} onListDelete={removeListFromState}>
-                {list}
-              </SmallList>
-            ))
+          ? list
+              .sort((a, b) => a.priority - b.priority)
+              .map((list) => (
+                <SmallList
+                  key={list._id}
+                  onListDelete={removeListFromState}
+                  onPriorityChange={updateListPriority}
+                >
+                  {list}
+                </SmallList>
+              ))
           : null}
       </div>
     </div>

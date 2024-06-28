@@ -8,6 +8,10 @@ const listSchema = new mongoose.Schema({
     default: "New List",
   },
   tasks: [TaskSchema], // Embedding Task schema as an array of tasks
+  priority: {
+    type: Number,
+    default: 100,
+  },
 });
 
 const List = mongoose.model("List", listSchema);

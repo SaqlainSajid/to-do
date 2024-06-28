@@ -14,6 +14,8 @@ function SmallList(props) {
   const [newTask, setNewTask] = useState("");
   const [isNameEditable, setIsNameEditable] = useState(false);
   const [groupName, setGroupName] = useState(props.children.name);
+  const [isPriorityEditable, setIsPriorityEditable] = useState(false);
+  const [priority, setPriority] = useState(props.children.priority);
 
   const handleGroupNameChange = (e) => {
     setGroupName(e.target.value);
@@ -27,6 +29,32 @@ function SmallList(props) {
 
   const toggleEditName = () => {
     setIsNameEditable(true);
+  };
+
+  const handlePriorityChange = (e) => {
+    setPriority(e.target.value);
+  };
+
+  const handlePriorityKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setIsPriorityEditable(false);
+      // Update priority in the backend
+      axios
+        .patch(`http://localhost:3000/lists/${listId}/priority`, {
+          priority: e.target.value,
+        })
+        .then((response) => {
+          console.log("Priority updated successfully", response.data);
+          props.onPriorityChange(listId, e.target.value);
+        })
+        .catch((error) => {
+          console.error("Failed to update priority:", error);
+        });
+    }
+  };
+
+  const toggleEditPriority = () => {
+    setIsPriorityEditable(true);
   };
 
   const handleDragStart = (e, position) => {
@@ -153,6 +181,20 @@ function SmallList(props) {
         ) : (
           <div onDoubleClick={toggleEditName}>
             <Group>{groupName}</Group>
+          </div>
+        )}
+        {isPriorityEditable ? (
+          <input
+            type="number"
+            value={priority}
+            onChange={handlePriorityChange}
+            onKeyDown={handlePriorityKeyDown}
+            onBlur={() => setIsPriorityEditable(false)}
+            autoFocus
+          />
+        ) : (
+          <div onDoubleClick={toggleEditPriority}>
+            <span className="priority">{priority}</span>
           </div>
         )}
         <button type="button" onClick={handleAddClick}>
