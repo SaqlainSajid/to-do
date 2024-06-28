@@ -1,5 +1,5 @@
-# This is basic to do list website
-- You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown horizontally
+# This is a basic to do list website
+- You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown vertically
 - You can add/delete lists
 - You can add/delete tasks to a list
 - You can reorganize the position of each task in a list
@@ -10,7 +10,7 @@
 Download the code, use GitHub desktop for ease of use
 open the project in VScode
 first make a .env file at the root of the server folder and add these two variables 
-  PORT=3000
+  PORT=3000 and
   MONGO_URI=mongodb+srv://<username>:<password>@basic.c804vti.mongodb.net/?retryWrites=true&w=majority&appName=Basic
 replace username and password with your mongodb username and password (you need to set up a mongoDB account first and get the username and password)
 
