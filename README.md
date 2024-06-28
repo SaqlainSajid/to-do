@@ -1,4 +1,4 @@
-# This is a basic to do list website
+# This is a minimalistic to do list website
 - You can make multiple lists for multiple settings (school, work etc.) and the lists will be shown horizontally from left to right
 - You can set priority to the lists you make lists with priority 1 would be shown at the left end, then priority 2 
 would be shown right next to it to the right and so on
@@ -7,6 +7,10 @@ would be shown right next to it to the right and so on
 - You can reorganize the position of each task in a list
 - You can mark a task done
 - Helps me by showing me all the different groups of tasks (school, work, clubs, health, miscellaneous etc.) I need to do together all in one place
+
+# Features to add in the future
+- Calendar: when on the calendar screen you have access to your task lists so that you can just drag and drop tasks on to the calendar
+and you can take a glance at your full week's schedule and tasks
 
 # How to start the project 
 Download the code, use GitHub desktop for ease of use
